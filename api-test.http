@@ -1,0 +1,85 @@
+### Health Check
+GET http://localhost:4000/health
+
+### Root Endpoint
+GET http://localhost:4000/
+
+### Register User
+POST http://localhost:4000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### Login User
+POST http://localhost:4000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@dermatouch.com",
+  "password": "admin123"
+}
+
+### Get Profile (requires token)
+GET http://localhost:4000/api/auth/profile
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+### Get All Categories
+GET http://localhost:4000/api/categories
+
+### Get Products
+GET http://localhost:4000/api/products
+
+### Get Products with Search
+GET http://localhost:4000/api/products?search=serum&page=1&limit=5
+
+### Get Products by Category
+GET http://localhost:4000/api/products?categoryId=1
+
+### Get Single Product
+GET http://localhost:4000/api/products/1
+
+### Create Product (Admin only)
+POST http://localhost:4000/api/products
+Content-Type: application/json
+Authorization: Bearer YOUR_ADMIN_TOKEN_HERE
+
+{
+  "title": "New Product",
+  "description": "Product description",
+  "price": 1999.99,
+  "sku": "NEW-PROD-001",
+  "stock": 25,
+  "categoryId": 1
+}
+
+### Create Order (requires token)
+POST http://localhost:4000/api/orders
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+{
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    }
+  ],
+  "address": {
+    "street": "123 Main Street",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": "400001",
+    "country": "India"
+  }
+}
+
+### Get User Orders
+GET http://localhost:4000/api/orders
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+### Get All Orders (Admin only)
+GET http://localhost:4000/api/orders/admin/all
+Authorization: Bearer YOUR_ADMIN_TOKEN_HERE
